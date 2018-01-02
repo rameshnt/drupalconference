@@ -1,0 +1,617 @@
+body.page-conference{
+  font: normal small "Lucida Grande", Verdana, sans-serif;
+}
+body.page-conference #breadcrumb,
+body.page-conference #sidebar-first{
+  display: none;
+}
+body.page-conference #main{
+  width: 75%;
+}
+body.page-conference #content{
+  width: 100%;
+}
+
+body.page-conference .form-type-select.form-item-rooms label{
+  float: left;
+  display: inline-block;
+  padding: 8px;
+}
+
+body.page-conference .container-inline-date .date-padding{
+  padding: 0;
+}
+
+input.hasDatepicker {
+  padding: 9px;
+}
+#content input.form-submit, #content a.button {
+  background: #0779bf;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  margin: 10px;
+  padding: 11px 37px;
+  text-transform: capitalize;
+  font-size: 13px;
+}
+
+#-conference-form-search .form-submit{
+  margin: 0 4%;
+}
+
+#-conference-form-search .form-item.form-type-date-popup.form-item-date{
+  display: table;
+  margin: 0 auto;
+  float: none;
+  width: 100%;
+}
+
+#-conference-form-search > div{
+  position: relative;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 37px;
+  margin-top: 38px;
+}
+#-conference-form-search .form-item.form-type-select.form-item-rooms{
+  float: left;
+}
+#-conference-form-search .form-item.form-type-select.form-item-rooms .form-select{
+  width: 173px;
+}
+#-conference-form-search > div:after{
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+#-conference-form-result .selected_info {
+  padding: 0 0 32px;
+  font-size: 14px;
+  position: relative;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 48px;
+  margin-top: 38px;
+  line-height: 2;
+}
+#-conference-form-result .selected_info span{
+  display: block;
+}
+#-conference-form-result .form-checkboxes {
+  clear: both;
+}
+#-conference-form-result .form-checkboxes:after{
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+#-conference-form-result .form-item.form-type-checkbox{
+  float: left;
+  width: 4.6%;
+  display: block;
+  padding: 10px 1px 12px;
+  text-align: center;
+  border: 1px solid #999;
+  border-right: none;
+  margin: 0 0px;
+  position: relative;
+}
+
+#-conference-form-result .form-item.form-type-checkbox input.form-checkbox{
+  position: absolute;
+  bottom: 7px;
+  left: auto;
+  right: auto;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+
+}
+#-conference-form-result .form-item.form-type-checkbox input#is_admin{
+  z-index:99;
+
+}
+#-conference-form-result .form-item.form-type-checkbox.form-item-times-20{
+  border: 1px solid #999;
+}
+#-conference-form-result .form-type-radio label,
+#-conference-form-result .form-type-checkbox label{
+  margin-left: 0;
+  padding: 14px 3px 11px;
+  display: block;
+  background-color: #eee;
+  margin-top: -10px;
+  margin-bottom: 28px;
+}
+#-conference-form-result .form-type-radio label,
+#-conference-form-result .form-type-checkbox label span.n{
+  display: block;
+  background-color: #40d47e;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  left: 0;
+  color:#fff;
+}
+
+#-conference-form-result textarea.form-textarea {
+  padding: 4px;
+  height: 40px;
+}
+#-conference-form-result .form-type-textarea.form-item-details,
+#-conference-form-result .form-type-checkboxes.form-item-times{
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 40px;
+}
+
+#-conference-form-result .infobar{
+  padding: 0 0 32px;
+  font-size: 20px;
+}
+#-conference-form-result .infobar span{
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+.btn,.btn:visited{
+  display: block;
+  text-decoration: none;
+  text-transform: capitalize;
+  border:1px solid #0779bf;
+  padding: 10px;
+  margin: 0 10px 0 0;
+  background-color: #0779bf;
+  color:#fff !important;
+  text-transform: capitalize;
+  margin: 20px 0;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+}
+.btn:hover{
+  text-decoration: none;
+  color:#fff;
+  background-color: #444;
+  border:1px solid #444;
+}
+
+label > span.form-required {
+ float: none !important;
+}
+
+
+/* admin settings */
+
+.cf-user-menu,
+.cf-admin-menu{
+  padding: 10px 0;
+}
+
+.cf-user-menu ul,
+.cf-admin-menu ul{
+  padding: 0 !important;
+  margin: 0 0 10px !important;
+  list-style: none;
+}
+.cf-user-menu ul:after,
+.cf-admin-menu ul:after{
+  content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.cf-user-menu ul li,
+.cf-admin-menu ul li{
+  float: left;
+}
+.cf-user-menu ul li a,
+.cf-admin-menu ul li a,
+.cf-admin-menu ul li .button{
+  display: block;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: #fff;
+  border:1px solid #0779bf;
+  padding: 10px;
+  color:#0779bf;
+  margin: 0 10px 0 0;
+}
+.cf-admin-menu ul li input{
+  display: block;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: #fff;
+  border: 1px solid #0779bf;
+  padding: 8px;
+  color: #0779bf;
+  margin: 0 10px 0 0;
+  display: inline-block;
+  margin: 0 11px;
+}
+.cf-admin-menu ul li .button{
+    display: inline-block;
+    margin: 0 11px;
+}
+.cf-user-menu ul li select,
+.cf-admin-menu ul li select{
+  display: block;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: #fff;
+  border: 1px solid #0779bf;
+  padding: 6px;
+  color: #0779bf;
+  margin: 0 10px 0 0;
+}
+
+.cf-user-menu ul li a.active,
+.cf-user-menu ul li a:hover,
+.cf-admin-menu ul li .button.active,
+.cf-admin-menu ul li .button:hover,
+.cf-admin-menu ul li a.active,
+.cf-admin-menu ul li a:hover{
+  background-color: #0779bf;
+  color:#fff;
+}
+
+/* settings */
+
+.cf-admin-settings-content,
+.cf-admin-rooms-content,
+.cf-admin-configurations-content{
+  padding: 10px 0;
+}
+
+.cf-admin-settings-content{
+
+}
+
+.cf-admin-rooms-content .rooms-wrap,
+.cf-admin-settings-content .settings-wrap{
+  border:1px solid #ccc;
+}
+.cf-admin-configurations-content .configurations-wrap:after,
+.cf-admin-rooms-content .rooms-wrap:after,
+.cf-admin-settings-content .settings-wrap:after{
+  content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+.cf-admin-configurations-content .form-item:after,
+.cf-admin-rooms-content .form-item:after,
+.cf-admin-settings-content .form-item:after{
+  content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+.cf-admin-rooms-content .form-item ,
+.cf-admin-settings-content .form-item {
+  border-bottom: 1px solid #ccc;
+}
+.cf-admin-configurations-content .form-item:last-child,
+.cf-admin-rooms-content .form-item:last-child ,
+.cf-admin-settings-content .form-item:last-child {
+  border-bottom: 0;
+}
+.cf-admin-configurations-content .form-item span,
+.cf-admin-rooms-content .form-item label,
+.cf-admin-rooms-content .form-item span,
+.cf-admin-settings-content .form-item label{
+  float: left;
+  width: 40%;
+  padding: 10px 20px;
+    line-height: 2.7;
+}
+
+.cf-admin-rooms-content .form-item textarea,
+.cf-admin-rooms-content .form-item select,
+.cf-admin-rooms-content .form-item input,
+.cf-admin-configurations-content .form-item textarea,
+.cf-admin-configurations-content .form-item input,
+.cf-admin-configurations-content .form-item select,
+.cf-admin-settings-content .form-item textarea,
+.cf-admin-settings-content .form-item input,
+.cf-admin-settings-content .form-item select{
+  height: 30px;
+  width: 400px;
+  border:1px solid #ccc;
+  box-sizing: border-box;
+  margin: 12px 0;
+}
+
+.cf-admin-configurations-content .form-item span select,
+.cf-admin-rooms-content .form-item span select,
+.cf-admin-settings-content .form-item span select{
+  height: 30px;
+  display: block;
+}
+
+/* configurations */
+
+.cf-admin-configurations-content .form-item span select{
+  float: right;
+  margin: 2px;
+  width: 270px;
+}
+.cf-admin-configurations-content .fieldset-wrapper .form-field-left{
+  float: left;
+  width: 50%;
+    margin: 32px 0 0;
+}
+.cf-admin-configurations-content .fieldset-wrapper .form-field-right{
+  float: right;
+  width: 50%;
+}
+.cf-admin-configurations-content .fieldset-wrapper .form-field-right .form-item-starttime{
+  border-bottom: 0;
+}
+.cf-admin-configurations-content .fieldset-wrapper .form-field-right label{
+  float: left;
+  width: 50%;
+}  
+.cf-admin-configurations-content .fieldset-wrapper .form-field-right select{
+  float: right;
+  width: 50%;
+  margin: 0;
+}   
+.cf-admin-configurations-content .container-inline-date label,
+.cf-admin-configurations-content .container-inline-date .description{
+  display: none;
+}      
+/* rooms */
+
+.cf-admin-rooms-content .form-item span textarea{
+  height: 100px;
+}
+
+/* reservations */
+
+table.reservations thead td{
+  background-color: #0779bf;
+  padding: 10px;
+  color:#fff;
+  font-weight: bold;
+  font-size:12px;
+}
+table.reservations tbody td{
+  background-color: #fff;
+  padding: 10px;
+  color:#444;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  font-size:12px;
+  font-weight: normal;
+}
+
+/* calender */
+
+.cf-user-calender-content,
+.cf-admin-calender-content{
+  margin-top: 30px;
+}
+.cf-user-calender-content .calender-room,
+.cf-admin-calender-content .calender-room{
+  padding-bottom: 30px;
+}
+
+.cf-user-calender-content .calender-room select,
+.cf-admin-calender-content .calender-room select{
+  padding: 8px;
+  width: 140px;
+}
+.cf-user-calender-content .calender-room .room-desc,
+.cf-admin-calender-content .calender-room .room-desc{
+  padding: 20px 0 0;
+}
+
+#calendar .fc td, .fc th {
+  background: #fff;
+  color: #444;
+  padding: 8px !important;
+  background-color: #0779bf;
+  color: #fff;
+}
+
+#calendar .fc td{
+  padding: 0;
+}
+#calendar tr, #calendar tr.even {
+  background: transparent;
+}
+
+#calendar .fc-row:first-child table {
+  margin: 0;
+}
+
+#calendar .fc-row table {
+  margin: 0;
+}
+
+#calendar .fc-day-number {
+  text-align: right;
+  background-color: #0779bf;
+  color: #fff;
+}
+#calendar .fc-toolbar .fc-state-default {
+  display: block;
+  text-decoration: none;
+  text-transform: capitalize;
+  background: #fff !important;
+  border: 1px solid #0779bf;
+  padding: 10px;
+  color: #0779bf;
+  margin: 0 10px 0 0;
+  border-radius:0 !important;
+  box-shadow:0 !important;
+  text-shadow:0 !important;
+  height: auto;
+}
+#calendar .fc-toolbar .fc-state-default:hover {
+    background: #0779bf !important;
+  color: #fff;
+}
+
+/* USER */
+
+.cf-user-rooms-content{
+  margin-top: 30px;
+}
+.cf-admin-rooms-content ul,
+.cf-user-rooms-content .rooms-wrap ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  line-height: 1.5;
+}
+.cf-admin-rooms-content ul li,
+.cf-user-rooms-content .rooms-wrap ul li{ 
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0;
+}
+.cf-admin-rooms-content ul div,
+.cf-user-rooms-content .rooms-wrap ul div{
+  margin-bottom: 10px;
+}
+.cf-admin-rooms-content ul div:after,
+.cf-user-rooms-content .rooms-wrap ul div:after{
+  content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+.cf-admin-rooms-content ul li span,
+.cf-user-rooms-content .rooms-wrap ul li span{
+  float: left;
+  width: 40%;
+}
+.cf-admin-rooms-content ul li span.title,
+.cf-user-rooms-content .rooms-wrap ul li span.title{
+  font-weight: bold;
+}
+
+#cancel-form,
+#booking-form{
+  display: none;
+  padding: 0;
+  z-index: 999999999999999 !important;
+}
+
+#booking-form .msg{
+}
+#booking-form .msg a{
+  color: #fff;
+  text-decoration: underline;
+}
+#booking-form .msg a:hover{
+  text-decoration: none;
+}
+#cancel-form .msg.success,
+#booking-form .msg.success{
+  padding: 13px;
+  background: #27ae60;
+  color: #fff;
+}
+#cancel-form .msg.error,
+#booking-form .msg.error{
+  padding: 13px;
+  background: #E0493A;
+  color: #fff;
+}
+#cancel-form .msg.wait,
+#booking-form .msg.wait{
+  padding: 13px;
+}
+
+#cancel-form .form .label,
+#booking-form .form .label{
+  background-color: #0779bf;
+  padding: 10px;
+  color:#fff;
+}
+#cancel-form .form .date,
+#booking-form .form .date{
+  padding: 10px;
+}
+#cancel-form .form textarea,
+#booking-form .form textarea{
+  border: 0;
+  width: auto;
+  outline: none;
+  padding: 3%;
+  height: 104%;
+  display: block;
+  min-width: 94%;
+  font-size: 13px;
+}
+
+#booking-form .form-ajax-submit button{
+  float: left;
+  width: 50%;
+  background-color: #0779bf;
+  padding: 14px 10px;
+  color:#fff;
+  cursor:pointer;
+  border:none;
+    font-family: inherit;
+}
+#cancel-form .form-ajax-submit button{
+  float: none;
+  width: 100%;
+  background-color: #0779bf;
+  padding: 14px 10px;
+  color:#fff;
+  cursor:pointer;
+  border:none;
+  font-family: inherit;
+}
+#booking-form .form-ajax-submit button.cancel{
+  border-right: 1px solid #fff;
+  border-right: 1px solid rgba(255,255,255,0.6);
+}
+#cancel-form .date-field,
+#booking-form .date-field{
+  border: none;
+    padding: 12px 3%;
+    outline: none;
+    display: block;
+    margin: 0;
+    width: 94%;
+}
+#cancel-form .date select,
+#booking-form .date select{
+  padding: 8px;
+  width: 130px;
+}
+
+.cell-freeze{
+  background-color: #eee;
+}
+
+.fc-day-grid-event .fc-content {
+    border-color: #444;
+    cursor: pointer;
+}
+.fc-day-grid-event .fc-content:hover{
+    background-color: #444;
+}
+.fc-toolbar h2{
+  color: #000 !important;
+  position: relative;
+}
