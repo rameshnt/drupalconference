@@ -1,0 +1,187 @@
+<?php
+
+module_load_include('inc', 'conference', 'conference/includes/db_timings');
+
+function conference_schema() {
+  $schema['conference_booking'] = array(
+    'description' => 'Conference booking table',
+    'fields' => array(
+      'id' => array(
+        'description' => 'main ID',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'userid' => array(
+        'description' => 'user ID',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'roomid' => array(
+        'description' => 'room ID',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'starttime' => array(
+        'description' => 'starttime',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'endtime' => array(
+        'description' => 'endtime',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'date',
+        'type' => 'varchar',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'details' => array(
+        'description' => 'desc',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  $schema['conference_rooms'] = array(
+    'description' => 'Conference rooms',
+    'fields' => array(
+      'id' => array(
+        'description' => 'main ID',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'capacity' => array(
+        'description' => 'capacity',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'Room name',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'description' => array(
+        'description' => 'Room Description',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  $schema['conference_week_hours'] = array(
+    'description' => 'Conference week hours',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'weekday' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'starttime' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'endtime' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  $schema['conference_month_hours'] = array(
+    'description' => 'Conference month hours',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'month' => array(
+        'description' => 'date',
+        'type' => 'varchar',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'starttime' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'endtime' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  $schema['conference_settings'] = array(
+    'description' => 'Conference settings',
+    'fields' => array(
+      'id' => array(
+        'description' => 'main ID',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'name of the setting',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'value' => array(
+        'description' => 'values',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+
+
+function conference_install(){
+  $room_records=populate_conference_rooms();
+  $settings_records=populate_conference_settings();
+
+  foreach($room_records as $r_record){
+    drupal_write_record ('conference_timings', $r_record);
+  }
+  foreach($settings_records as $s_record){
+    drupal_write_record ('conference_settings', $s_record);
+  }
+}
+
+?>

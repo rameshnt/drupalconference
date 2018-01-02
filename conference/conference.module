@@ -1,0 +1,202 @@
+<?php
+
+
+module_load_include('inc', 'conference', 'conference/includes/db_timings');
+module_load_include('inc', 'conference', 'conference/includes/form');
+module_load_include('inc', 'conference', 'conference/includes/form_db');
+module_load_include('inc', 'conference', 'conference/includes/form_hooks');
+module_load_include('inc', 'conference', 'conference/includes/form_callbacks');
+module_load_include('inc', 'conference', 'conference/includes/form_submits');
+module_load_include('inc', 'conference', 'conference/includes/form_validations');
+module_load_include('inc', 'conference', 'conference/includes/pages');
+
+
+drupal_add_css(drupal_get_path('module', 'conference') . '/conference/library/css/conference-style.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+drupal_add_css(drupal_get_path('module', 'conference') . '/conference/library/css/jquery.modal.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+drupal_add_css(drupal_get_path('module', 'conference') . '/conference/library/css/fullcalendar.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+
+
+function conference_menu() { 
+    $items['conference'] = array(
+      'title'=>"Calendar",
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_user_calender_page',
+      'type' => MENU_CALLBACK,
+      'weight'=>1
+    );
+    $items['conference/user'] = array(
+      'title'=>"Calendar",
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_user_calender_page',
+      'weight'=>1
+    );
+    $items['conference/user/calender'] = array(
+      'title'=>"Calendar",
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_user_calender_page',
+      'weight'=>1
+    );
+    $items['conference/user/reservations'] = array(
+      'title'=>"My Reservations",
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_user_reservations_page',
+      'weight'=>1
+    );
+    $items['conference/user/rooms'] = array(
+      'title'=>"Conference Room Details",
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_user_rooms_page',
+      'weight'=>1
+    );
+    /*
+      ADMIN
+    */
+    $items['conference/admin'] = array(
+      'title'=>"Settings", 
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_admin_settings_page',
+      'type' => MENU_NORMAL_ITEM,
+      'weight'=>1
+    );
+    $items['conference/admin/configurations'] = array(
+      'title'=>"Configurations",
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_admin_configurations_page',
+      'weight'=>1
+    );
+    $items['conference/admin/rooms'] = array(
+      'title'=>"Rooms",
+      'type'=>MENU_CALLBACK, 
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_admin_rooms_page',
+      'weight'=>1
+    );
+    $items['conference/admin/calender'] = array(
+      'title'=>"Calendar",
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_admin_calender_page',
+      'weight'=>1
+    );
+    $items['conference/admin/reservations'] = array(
+    	'title'=>"Reservations",
+    	'type'=>MENU_CALLBACK,
+    	"access arguments"=>array("access conference"),
+      'page callback' => '__conference_admin_reservations_page',
+      'weight'=>1
+    );
+    $items['conference/admin/reservations/export'] = array(
+    	'title'=>"Reservations",
+    	'type'=>MENU_CALLBACK,
+    	"access arguments"=>array("access conference"),
+      'page callback' => '__conference_admin_reservations_export',
+      'weight'=>1
+    );
+    $items['admin/config/system/conference'] = array(
+      'title' => 'Conference Rooms',
+      'description' => 'Manage Conference rooms',
+          'type' => MENU_NORMAL_ITEM,
+          'access arguments' => array('access administration pages'),
+          'page callback' => '__conference_admin_rooms_page_form',
+          'weight'=>1
+    );
+
+    /*AJAX CALLS*/
+
+    $items['conference/ajax'] = array(
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_ajax_calls_page'
+    );
+
+    $items['conference/ajax/getreserved'] = array(
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__conference_ajax_getreserved_page'
+    );
+    $items['conference/ajax/get_advance_booking_days'] = array(
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__get_advance_booking_days_page'
+    );
+    $items['conference/ajax/add_ajax_event'] = array(
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__add_ajax_event_page'
+    );
+
+    $items['conference/ajax/remove_ajax_event'] = array(
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__remove_ajax_event_page'
+    );
+    $items['conference/ajax/remove_user_ajax_event'] = array(
+      'type'=>MENU_CALLBACK,
+      "access arguments"=>array("access conference"),
+      'page callback' => '__remove_user_ajax_event_page'
+    );
+
+    return $items;
+  }
+
+
+function conference_permission() {
+  return array(
+    'access conference' => array(
+      'title' => t('Access conference'),
+      'description' => t('Perform administration tasks for my module.'),
+    ),
+  );
+}
+
+
+function conference_theme(){
+  $themes = array (
+      'conference_calender_page' => array(
+          'template' => 'conference/templates/calender',
+          'arguments' => array(),
+      ),
+      'conference_user_calender_page' => array(
+          'template' => 'conference/templates/user/calender',
+          'arguments' => array(),
+      ),
+      'conference_user_reservations_page' => array(
+          'template' => 'conference/templates/user/reservations',
+          'arguments' => array(),
+      ),
+      'conference_user_rooms_page' => array(
+          'template' => 'conference/templates/user/rooms',
+          'arguments' => array(),
+      ),
+      'conference_admin_settings_page' => array(
+          'template' => 'conference/templates/admin/settings',
+          'variables' => array('settings_form'=>NULL),
+          'arguments' => array(),
+      ),
+      'conference_admin_configurations_page' => array(
+          'template' => 'conference/templates/admin/configurations',
+          'arguments' => array(),
+      ),
+      'conference_admin_rooms_page' => array(
+          'template' => 'conference/templates/admin/rooms',
+          'arguments' => array(),
+      ),
+      'conference_admin_calender_page' => array(
+          'template' => 'conference/templates/admin/calender',
+          'arguments' => array(),
+      ),
+      'conference_admin_reservations_page' => array(
+          'template' => 'conference/templates/admin/reservations',
+          'arguments' => array(),
+      ),
+  );
+  return $themes;
+}
+
+
+?>

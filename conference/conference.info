@@ -1,0 +1,11 @@
+name = "Conference Room Booking System"
+description = "Search and book conference room"
+dependencies[] = date
+core = "7.x"
+version= "7.x"
+package = "Conference"
+configure = "admin/config/system/conference"
+scripts[]="conference/library/js/moment.js"
+scripts[]="conference/library/js/fullcalender.js"
+scripts[]="conference/library/js/jquery.modal.min.js"
+scripts[]="conference/library/js/conference-script.js"
